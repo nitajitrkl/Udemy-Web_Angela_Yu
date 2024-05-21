@@ -16,7 +16,7 @@ app.get("/", function(req,res){
 app.post("/",function(req, res){
   const query =req.body.cityName;
   const apiKey = process.env.API_KEY.toString();
-  const unit = "metric";
+  const unit = "imperial";
   const url = "https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid=" +apiKey+ "&units="+unit;
 
 https.get(url, function(response){
@@ -31,7 +31,7 @@ https.get(url, function(response){
       const iconURL = "http://openweathermap.org/img/wn/" +icon+ "@2x.png"
       res.write("<p>The weather is currently "+ weatherDescription + "</p>");
 //we can write res.write as we cannot write res.send again
-      res.write("<h1>The current temperature in " + query+ " is "+temp+ " degree Celcius.</h1>");
+      res.write("<h1>The current temperature in " + query+ " is "+temp+ " degree Farenhite.</h1>");
       res.write("<img src =" + iconURL+">");
       res.send();
       // there can be only one res. send for any app.get method
